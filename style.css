@@ -22,11 +22,42 @@ body {
 }
 
 #input {
+    display: block;
+    margin: 0 auto;
     width: 100%;
+    /* or any width you prefer */
     height: 100px;
     font-size: 16px;
     padding: 10px;
+    box-sizing: border-box;
 }
+
+@media (max-width: 850px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    #text {
+        font-size: 16px;
+    }
+
+    #input {
+        width: 100%;
+        height: 80px;
+        font-size: 14px;
+    }
+
+    .stats {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
 
 .stats {
     margin-top: 20px;
@@ -40,3 +71,16 @@ button {
     cursor: pointer;
 }
 
+
+
+/* 📱 Mobile Optimization */
+@media (max-width: 480px) {
+    .stats {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        width: 100%;
+    }
+}

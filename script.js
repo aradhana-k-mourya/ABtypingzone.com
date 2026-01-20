@@ -76,12 +76,12 @@ restartBtn.addEventListener("click", () => {
     inputElement.disabled = false;
     startTest();
 });
-startTest(); 
+startTest();
 
 nextBtn.addEventListener("click", () => {
     inputElement.disabled = false;
     startTest();
-} );
+});
 
 startTest();
 
