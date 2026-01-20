@@ -1,10 +1,8 @@
 const textElement = document.getElementById("text");
-textElement.style.textAlign = "justify";
-textElement.style.lineHeight = "1.25";
-textElement.style.fontFamily = "Georgia, serif";
 const inputElement = document.getElementById("input");
 const timeElement = document.getElementById("time");
 const wpmElement = document.getElementById("wpm");
+const mistakeElement = document.getElementById("mistake");
 const accuracyElement = document.getElementById("accuracy");
 const restartBtn = document.getElementById("restart");
 const nextBtn = document.getElementById("next");
@@ -22,6 +20,7 @@ let time = 60;
 let timer;
 let correctChars = 0;
 let totalChars = 0;
+let mistakes = 0;
 let started = false;
 
 function startTest() {
@@ -30,10 +29,13 @@ function startTest() {
     time = 60;
     correctChars = 0;
     totalChars = 0;
+    mistakes = 0;
     started = false;
     timeElement.textContent = time;
     wpmElement.textContent = 0;
     accuracyElement.textContent = "0%";
+    istakeElement.textContent = 0;
+    inputElement.disabled = false;
 }
 
 function updateStats() {
@@ -41,15 +43,19 @@ function updateStats() {
     const targetText = textElement.textContent;
     totalChars = typedText.length;
     correctChars = 0;
+     mistakes = 0;
 
     for (let i = 0; i < typedText.length; i++) {
         if (typedText[i] === targetText[i]) {
             correctChars++;
+        } else {
+            mistakes++;
         }
     }
 
     const accuracy = totalChars > 0 ? (correctChars / totalChars) * 100 : 0;
     accuracyElement.textContent = accuracy.toFixed(1) + "%";
+mistakeElement.textContent = mistakes;
 
     const words = typedText.trim().split(/\s+/).length;
     const elapsed = 60 - time;
@@ -76,7 +82,7 @@ restartBtn.addEventListener("click", () => {
     inputElement.disabled = false;
     startTest();
 });
-startTest();
+
 
 nextBtn.addEventListener("click", () => {
     inputElement.disabled = false;
